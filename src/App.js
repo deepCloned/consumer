@@ -16,19 +16,19 @@ function App() {
         data: JSON.stringify(userInfo)
       }
       console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-      // try {
-      //   const loginRes = await axios({
-      //     url,
-      //     method: 'POST',
-      //     headers: {
-      //       "Content-Type": 'application/x-www-form-urlencoded'
-      //     },
-      //     data: qs.stringify(requestData)
-      //   })
-      //   console.log(loginRes);
-      // } catch (err) {
-      //   console.log(err);
-      // }
+      try {
+        const loginRes = await axios({
+          url,
+          method: 'POST',
+          headers: {
+            "Content-Type": 'application/x-www-form-urlencoded'
+          },
+          data: qs.stringify(requestData)
+        })
+        console.log(loginRes);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getLogin();
   }, []);
