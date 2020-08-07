@@ -1,36 +1,23 @@
 import React, { useEffect } from "react";
-import md5 from "blueimp-md5";
-import qs from 'qs';
-import axios from 'axios';
+import {Auth} from "./model/auth";
 import "./App.css";
 
 function App() {
   useEffect(() => {
-    async function getLogin() {
-      const url = "/api/system/userLogin";
-      const userInfo = {
-        userName: "xb_test1",
-        userPwd: md5("123qwe..."),
-      };
-      const requestData = {
-        data: JSON.stringify(userInfo)
-      }
-      console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-      try {
-        const loginRes = await axios({
-          url,
-          method: 'POST',
-          headers: {
-            "Content-Type": 'application/x-www-form-urlencoded'
-          },
-          data: qs.stringify(requestData)
-        })
-        console.log(loginRes);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getLogin();
+    // async function getLogin() {
+    //   const userInfo = {
+    //     userName: "xb_test1",
+    //     userPwd: "123qwe...",
+    //   };
+    //   const loginRes = await Auth.getLogin(userInfo)
+    //   console.log(loginRes)
+    //   if (loginRes.resultCode === '00') {
+    //     const {token, userId} = loginRes
+    //     localStorage.setItem('token', token)
+    //     localStorage.setItem('userId', userId)
+    //   }
+    // }
+    // getLogin();
   }, []);
 
   return (

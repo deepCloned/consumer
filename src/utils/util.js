@@ -1,4 +1,7 @@
 import CryptoJS from "crypto-js";
+import axios from 'axios';
+import qs from 'qs';
+import {config} from '../config/config';
 
 class Encrypt {
   static secrect = CryptoJS.enc.Utf8.parse("5RkLWI/aWIU+wumb1UmR/eUZ");
@@ -24,8 +27,7 @@ class Encrypt {
    * @param data 需要解密的数据
    */
   static decryptByDES(data) {
-    return CryptoJS.TripleDES.decrypt(
-      {
+    return CryptoJS.TripleDES.decrypt({
         ciphertext: CryptoJS.enc.Base64.parse(data),
       },
       Encrypt.secrect,
@@ -35,7 +37,42 @@ class Encrypt {
 }
 
 class Http {
-  static request() {}
+  /* archive */
+  static async archiveRequest({method, url, data}) {
+    return await Http._request({
+      baseUrl: config.ARCHIVE_BASE_URL,
+      url,
+      data,
+      method
+    })
+  }
+  /* consumer */
+  static async consumerRequest({method, url, data}) {
+    return await Http._request({
+      baseUrl: config.CONSUMER_BASE_URL,
+      url,
+      data,
+      method,
+    })
+  }
+  /* 通用请求方法 */
+  static async _request({baseUrl, url, method='POST', data={}}) {
+    try {
+      const res = await axios({
+        url: `${baseUrl}${url}`,
+        method,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: qs.stringify(data)
+      })
+      return res
+    } catch(err) {
+      console.log('请求失败', err)
+    }
+  }
 }
 
-export { Http };
+export {
+  Http
+};
