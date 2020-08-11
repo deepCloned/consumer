@@ -8,6 +8,13 @@ module.exports = function (app) {
       pathRewrite: {
         "^/api": "",
       },
+    }),
+    createProxyMiddleware("/agent", {
+      target: "https://wechat.megameta.cn/consumer/",
+      changeOrigin: true,
+      pathRewrite: {
+        "^/agent": "",
+      },
     })
   );
 };

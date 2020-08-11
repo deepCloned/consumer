@@ -2,6 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import md5 from 'blueimp-md5';
 import {config} from '../config/config';
+import {Http} from '../utils/util';
 
 class Auth {
   static successRspCode = "0000"
@@ -30,6 +31,13 @@ class Auth {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  /* 获取左侧菜单栏 */
+  static async getUserModel() {
+    return await Http.archiveRequest({
+      url: `user/queryUserModel`,
+    })
   }
 }
 
