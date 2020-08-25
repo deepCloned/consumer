@@ -4,6 +4,7 @@ import "./App.css";
 import { QueryCondition } from "./model/queryCondition";
 import { BrandOverview } from "./model/brandOverview";
 import { ScoreAnalysis } from "./model/scoreAnalysis";
+import {ConsumerInsight} from './model/consumerInsight';
 
 function App() {
   useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
    * 定义变量
    */
   const [brandId] = useState(4);
-  const [platformId] = useState([2, 3]);
+  const [platformId] = useState([3]);
   const [type] = useState("04");
   const [startDate] = useState("2020-07-01");
   const [endDate] = useState("2020-07-30");
@@ -135,7 +136,7 @@ function App() {
   const handleGetScoreOverview = async function () {
     const scoreRes = await ScoreAnalysis.getScoreOverview({
       brandId,
-      platformId,
+      platformId: platformId[0],
       startDate,
       endDate,
       type,
@@ -147,7 +148,7 @@ function App() {
   const handleGetScoreTrend = async function () {
     const trendRes = await ScoreAnalysis.getScoreTrend({
       brandId,
-      platformId,
+      platformId: platformId[0],
       startDate,
       endDate,
       type,
@@ -171,7 +172,7 @@ function App() {
   const handleGetStarTrend = async function () {
     const trendRes = await ScoreAnalysis.getStarTrend({
       brandId,
-      platformId,
+      platformId: platformId[0],
       startDate,
       endDate,
       type,
@@ -208,6 +209,80 @@ function App() {
     console.log(trendRes)
   }
 
+  /* 消费者洞察 */
+  const handleGetThemeAnalysis = async function () {
+    const res = await ConsumerInsight.getThemeAnalysis({
+      brandId,
+      startDate,
+      endDate,
+      platformId,
+      commentType,
+      type,
+      typeName,
+    })
+    console.log(res)
+  }
+
+  const handleGetEvaluateTrend = async function () {
+    const res = await ConsumerInsight.getKeywordTrend({
+      brandId,
+      startDate,
+      endDate,
+      platformId,
+      commentType,
+      type,
+    })
+    console.log(res)
+  }
+
+  const handleGetKeywordAnalysis = async function () {
+    const res = await ConsumerInsight.getKeywordAnalysis({
+      brandId,
+      startDate,
+      endDate,
+      platformId,
+      commentType,
+      type,
+    })
+    console.log(res)
+  }
+
+  const handleGetKeyworkTrend = async function () {
+    const res = await ConsumerInsight.getKeywordTrend({
+      brandId,
+      startDate,
+      endDate,
+      platformId,
+      commentType,
+      type,
+    })
+    console.log(res)
+  }
+
+  const handleGetDimensionAnalysis = async function () {
+    const res = await ConsumerInsight.getDimensionAnalysis({
+      brandId,
+      startDate,
+      endDate,
+      platformId,
+      commentType,
+      type,
+    })
+    console.log(res)
+  }
+
+  const handleGetKeywordShop = async function () {
+    const res = await ConsumerInsight.getKeywordShop({
+      brandId,
+      startDate,
+      endDate,
+      platformId,
+      commentType,
+      type,
+    })
+    console.log(res)
+  }
+
   return (
     <div className="App">
       <div className="search-condition">
@@ -236,6 +311,15 @@ function App() {
         <button onClick={handleGetStarTrend}>get star trend</button>
         <button onClick={handleGetBadCommentRank}>get bad comment rank</button>
         <button onClick={handleGetBadRateTrend}>get bad rate trend</button>
+      </div>
+      <div className="consumer-insight">
+        <h4>Consumer Insight</h4>
+        <button onClick={handleGetThemeAnalysis}>get theme analysis</button>
+        <button onClick={handleGetEvaluateTrend}>get evaluate analysis</button>
+        <button onClick={handleGetKeywordAnalysis}>get keyword analysis</button>
+        <button onClick={handleGetKeyworkTrend}>get key word trend</button>
+        <button onClick={handleGetDimensionAnalysis}>get dimension analysis</button>
+        <button onClick={handleGetKeywordShop}>get keyword shop</button>
       </div>
     </div>
   );
