@@ -40,7 +40,6 @@ function App() {
   /* 评分分析 */
   const [dateType] = useState("01");
   const [typeName] = useState("");
-  const [typeId] = useState("");
   const [star] = useState("3");
   const [starType] = useState("00");
 
