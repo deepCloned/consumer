@@ -1,0 +1,56 @@
+.header{
+  padding-left: 30px;
+  padding-right: 20px;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(40, 40, 40, .3);
+  .header-left{
+    width: 170px;
+    height: 27px;
+  }
+  .header-right{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    .avatar{
+      width: 32px;
+      height: 32px;
+    }
+    .welcome{
+      margin-left: 14px;
+      display: flex;
+      flex-direction: column;
+      color: #4f575a;
+      font-size: 14px;
+      .welcome-desc{
+        margin-top: 2px;
+        font-size: 18px;
+      }
+    }
+    .drop-icon{
+      margin-left: 6px;
+      width: 0px;
+      height: 0px;
+      border: 6px solid transparent;
+      border-top-color: #4f575a;
+    }
+    .log-out{
+      width: 160px;
+      height: 80px;
+      position: absolute;
+      bottom: -82px;
+      right: -13px;
+      background: #fff;
+      border: 1px solid #d3d3d3;
+    }
+  }
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
